@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <com.dalvik.custombutton.CustomButton
+        android:id="@+id/customButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:showIcon="true"
+        app:btnBackgroundColor="@color/purple_200"
+        app:btnIcon="@drawable/ic_success"
+        app:btnCornerRadius="30"
+        app:btnText="@string/app_name"
+        app:btnTextColor="@color/white"
+        app:btnIconColor="@color/white"
+        app:btnType="1"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
