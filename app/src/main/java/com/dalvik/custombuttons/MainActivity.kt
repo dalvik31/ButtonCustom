@@ -11,10 +11,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         buttonCustom = findViewById(R.id.customButton)
-
         buttonCustom!!.setOnClickListener {
+           // buttonCustom!!.setLoading(true)
             Toast.makeText(this, "button clicked", Toast.LENGTH_LONG).show()
         }
+
+        // buttonCustom!!.setLoading(false)
 
     }
 

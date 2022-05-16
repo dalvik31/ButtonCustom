@@ -27,7 +27,7 @@ class CustomButton @JvmOverloads constructor(
 
 
     //variables
-    private var btnText: Int = android.R.string.ok
+    private var btnText: String = android.R.string.ok.toString()
     private var btnIconColor: Int = android.R.color.white
     private var btnBackgroundColor: Int = android.R.color.darker_gray
     private var btnTextColor: Int = android.R.color.white
@@ -36,7 +36,7 @@ class CustomButton @JvmOverloads constructor(
     private var btnIconImage: Int = 0
     private var showIcon: Boolean = false
     private var btnCornerRadius: Float = 0f
-
+    private var btnLottieFile: Int = 0
 
 
     //Init views
@@ -52,7 +52,7 @@ class CustomButton @JvmOverloads constructor(
     private fun loadAttr(attrs: AttributeSet?, defStyleAttr: Int) {
         val styledAttrs = context.theme
             .obtainStyledAttributes(attrs, R.styleable.CustomButton, defStyleAttr, 0)
-        btnText = styledAttrs.getResourceId(R.styleable.CustomButton_btnText, android.R.string.ok)
+        btnText = styledAttrs.getString(R.styleable.CustomButton_btnText).toString()
         btnBackgroundColor = styledAttrs.getResourceId(
             R.styleable.CustomButton_btnBackgroundColor,
             android.R.color.darker_gray
@@ -74,6 +74,9 @@ class CustomButton @JvmOverloads constructor(
         btnIconImage = styledAttrs.getResourceId(R.styleable.CustomButton_btnIcon, 0)
         btnCornerRadius = styledAttrs.getFloat(R.styleable.CustomButton_btnCornerRadius, 0f)
 
+
+        btnLottieFile = styledAttrs.getResourceId(R.styleable.CustomButton_btnLottieFile, 0)
+
         styledAttrs.recycle()
 
         initView()
@@ -85,6 +88,14 @@ class CustomButton @JvmOverloads constructor(
             buttonDefault()
         } else {
             buttonGeneral(btnType.btnColor)
+        }
+        if (btnCornerRadius > 0) {
+            btnBackground.radius = btnCornerRadius
+            btnBackground.elevation = 0f
+        }
+
+        if (btnLottieFile != 0) {
+            progressAnimation.setAnimation(btnLottieFile)
         }
         if (!btnIsProgress)
             setImageResource()
@@ -107,7 +118,7 @@ class CustomButton @JvmOverloads constructor(
     }
 
     private fun buttonDefault() {
-        button.setText(btnText)
+        if (!button.text.isNullOrBlank()) btnText
 
         btnBackground.setCardBackgroundColor(
             ContextCompat.getColor(
@@ -129,9 +140,6 @@ class CustomButton @JvmOverloads constructor(
             )
         )
 
-        if (btnCornerRadius > 0) {
-            btnBackground.radius = btnCornerRadius
-        }
     }
 
 
@@ -142,14 +150,13 @@ class CustomButton @JvmOverloads constructor(
 
 
     private fun buttonGeneral(colorBackground: Int) {
-        button.setText(btnText)
+        if (!button.text.isNullOrBlank()) btnText
         btnBackground.setCardBackgroundColor(
             ContextCompat.getColor(
                 context,
                 colorBackground
             )
         )
-
         btnIcon.setColorFilter(
             ContextCompat.getColor(
                 context,
@@ -162,21 +169,21 @@ class CustomButton @JvmOverloads constructor(
                 android.R.color.white
             )
         )
-
-        if (btnCornerRadius > 0) {
-            btnBackground.radius = btnCornerRadius
-        }
     }
 
     fun setLoading(loading: Boolean) {
         if (loading) {
-            button.visibility = View.GONE
+            button.visibility = View.INVISIBLE
             progressAnimation.visibility = View.VISIBLE
+            btnBackground.isEnabled = false
         } else {
+            btnBackground.isEnabled = true
             button.visibility = View.VISIBLE
-            progressAnimation.visibility = View.GONE
+            progressAnimation.visibility = View.INVISIBLE
         }
     }
+
+
 }
 
 enum class TypesButtons(val btnType: Int, val btnColor: Int, val btnIcon: Int) {
