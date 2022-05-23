@@ -118,7 +118,7 @@ class CustomButton @JvmOverloads constructor(
     }
 
     private fun buttonDefault() {
-        if (!button.text.isNullOrBlank()) btnText
+        button.text = btnText
 
         btnBackground.setCardBackgroundColor(
             ContextCompat.getColor(
@@ -150,7 +150,7 @@ class CustomButton @JvmOverloads constructor(
 
 
     private fun buttonGeneral(colorBackground: Int) {
-        if (!button.text.isNullOrBlank()) btnText
+        button.text = btnText
         btnBackground.setCardBackgroundColor(
             ContextCompat.getColor(
                 context,
