@@ -13,6 +13,7 @@
         android:layout_height="match_parent"
         app:cardBackgroundColor="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:theme="@style/Theme.MaterialComponents.Light"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
