@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
+import androidx.annotation.StringRes
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -181,6 +182,10 @@ class CustomButton @JvmOverloads constructor(
             button.visibility = View.VISIBLE
             progressAnimation.visibility = View.INVISIBLE
         }
+    }
+
+    fun setText(@StringRes textResource: Int) {
+        button.text = context.getString(textResource)
     }
 
 
